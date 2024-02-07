@@ -5,9 +5,16 @@
     <title>Product List</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
+
+<style>
+    .container {
+        margin-top: 50px;
+    }
+</style>
+
 <body>
 
-<div class="container my-2">
+<div class="container">
     <h2>Product' List</h2>
     <a th:href="@{/product/create}" class="btn btn-primary btn-sm mb-3">Create Product</a>
 
@@ -17,18 +24,24 @@
             <th scope="col">Product Name</th>
             <th scope="col">Quantity</th>
             <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="product: ${products}">
             <td th:text="${product.productName}"></td>
             <td th:text="${product.productQuantity}"></td>
-<!--            <td th:text="${product.productId}"></td>-->
             <td>
-                <a th:href="@{/product/edit/{productId} (productId=${product.productId})}" class="btn btn-primary btn-sm" th:id="'edit_' + ${product.productId}">
-                    <i class="fas fa-edit"></i>
+                <a th:href="@{/product/edit/{productId} (productId=${product.productId})}" class="btn btn-primary btn-sm btn-lg" th:id="'edit_' + ${product.productId}" title="Edit">
+                    Edit
                 </a>
             </td>
+            <td>
+                <a th:href="@{/product/delete/{productId} (productId=${product.productId})}" class="btn btn-danger btn-sm btn-lg" th:id="'delete_' + ${product.productId}">
+                    Delete
+                </a>
+            </td>
+
         </tr>
         </tbody>
     </table>
