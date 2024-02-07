@@ -16,7 +16,7 @@
 
 <div class="container">
     <h2>Product' List</h2>
-    <a th:href="@{/product/create}" class="btn btn-primary btn-sm mb-3">Create Product</a>
+    <a th:href="@{/product/create}" class="btn btn-primary btn-sm mb-3" id="create-product">Create Product</a>
 
     <table border="1" class="table table-striped table-responsive-md">
         <thead>
@@ -29,8 +29,8 @@
         </thead>
         <tbody>
         <tr th:each="product: ${products}">
-            <td th:text="${product.productName}"></td>
-            <td th:text="${product.productQuantity}"></td>
+            <td th:text="${product.productName}" th:id="'name-' + ${product.productId}"></td>
+            <td th:text="${product.productQuantity}" th:id="'quantity-' + ${product.productId}"></td>
             <td>
                 <a th:href="@{/product/edit/{productId} (productId=${product.productId})}" class="btn btn-primary btn-sm btn-lg" th:id="'edit_' + ${product.productId}" title="Edit">
                     Edit
