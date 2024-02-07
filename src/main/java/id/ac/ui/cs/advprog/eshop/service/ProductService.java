@@ -10,5 +10,6 @@ public interface ProductService {
     public String getNewId();
     public Product findById(String productId);
     public Product edit(Product product);
+    public void  delete(Product product);
 
 }

@@ -56,4 +56,14 @@ public class ProductServiceImpl implements ProductService{
         String newId = String.format("%d", newIdNumber);
         return newId;
     }
+
+    @Override
+    public void delete(Product product) {
+        Product targetProduct = findById(product.getProductId());
+        if (product == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found");
+        }
+        productRepository.delete(product);
+    }
+
 }
