@@ -51,7 +51,9 @@ public class ProductController {
     @GetMapping("/delete/{productId}")
     public String deleteProductPage(@PathVariable String productId, Model model) {
         Product product = service.findById(productId);
-        model.addAttribute("product", product);
+        model.addAttribute("productId", product.getProductId());
+        model.addAttribute("productName", product.getProductName());
+        model.addAttribute("productQuantity", product.getProductQuantity());
         return "deleteProduct";
     }
 

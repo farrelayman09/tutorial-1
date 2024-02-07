@@ -42,8 +42,8 @@ public class ProductServiceImpl implements ProductService{
         return null;
     }
     public Product edit(Product product) {
-        Product editedProduct = findById(product.getProductId());
-        if (editedProduct == null) {
+        Product targetProduct = findById(product.getProductId());
+        if (targetProduct == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found");
         }
         productRepository.edit(product);
@@ -60,10 +60,10 @@ public class ProductServiceImpl implements ProductService{
     @Override
     public void delete(Product product) {
         Product targetProduct = findById(product.getProductId());
-        if (product == null) {
+        if (targetProduct == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found");
         }
-        productRepository.delete(product);
+        productRepository.delete(targetProduct);
     }
 
 }
