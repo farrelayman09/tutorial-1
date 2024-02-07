@@ -3,7 +3,9 @@ package id.ac.ui.cs.advprog.eshop.service;
 import id.ac.ui.cs.advprog.eshop.model.Product;
 import id.ac.ui.cs.advprog.eshop.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -16,6 +18,7 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public Product create(Product product) {
+        product.setProductId(getNewId());
         productRepository.create(product);
         return product;
     }
@@ -26,5 +29,41 @@ public class ProductServiceImpl implements ProductService{
         List<Product> allProduct = new ArrayList<>();
         productIterator.forEachRemaining(allProduct::add);
         return allProduct;
+    }
+
+    public Product findById(String productId) {
+        Iterator<Product> productIterator = productRepository.findAll();
+        while (productIterator.hasNext()) {
+            Product product = productIterator.next();
+            if (product.getProductId().equals(productId)) {
+                return product;
+            }
+        }
+        return null;
+    }
+    public Product edit(Product product) {
+        Product editedProduct = findById(product.getProductId());
+        if (editedProduct == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found");
+        }
+        productRepository.edit(product);
+        return product;
+    }
+
+    @Override
+    public String getNewId() {
+//        Iterator<Product> productIterator = productRepository.findAll();
+//        String newId = "0";
+//        while (productIterator.hasNext()) {
+//            Product product = productIterator.next();
+//            String productId = product.getProductId();
+//            if (productId.compareTo(newId) > 0) {
+//                newId = productId;
+//            }
+//        }
+//        int newIdNumber = Integer.parseInt(newId);
+        long newIdNumber = ++Product.productIdCount;
+        String newId = String.format("%d", newIdNumber);
+        return newId;
     }
 }

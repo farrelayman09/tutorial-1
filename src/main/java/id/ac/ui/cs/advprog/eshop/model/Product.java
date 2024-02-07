@@ -8,4 +8,5 @@ public class Product {
     private String productId;
     private String productName;
     private int productQuantity;
+    public static long productIdCount = 0;
 }
