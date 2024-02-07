@@ -17,16 +17,21 @@
             <th scope="col">Product Name</th>
             <th scope="col">Quantity</th>
             <th scope="col"></th>
+            <th scope="col"></th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="product: ${products}">
             <td th:text="${product.productName}"></td>
             <td th:text="${product.productQuantity}"></td>
-<!--            <td th:text="${product.productId}"></td>-->
             <td>
                 <a th:href="@{/product/edit/{productId} (productId=${product.productId})}" class="btn btn-primary btn-sm btn-lg" th:id="'edit_' + ${product.productId}" title="Edit">
                     Edit
+                </a>
+            </td>
+            <td>
+                <a th:action="@{/product/delete/{productId} (productId=${productId})}" method="post" style="display: inline;">
+                    <button type="submit" class="btn btn-primary" style="float: right;" id="submit">Submit</button>
                 </a>
             </td>
 
