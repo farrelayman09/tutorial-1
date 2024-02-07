@@ -52,16 +52,6 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public String getNewId() {
-//        Iterator<Product> productIterator = productRepository.findAll();
-//        String newId = "0";
-//        while (productIterator.hasNext()) {
-//            Product product = productIterator.next();
-//            String productId = product.getProductId();
-//            if (productId.compareTo(newId) > 0) {
-//                newId = productId;
-//            }
-//        }
-//        int newIdNumber = Integer.parseInt(newId);
         long newIdNumber = ++Product.productIdCount;
         String newId = String.format("%d", newIdNumber);
         return newId;
