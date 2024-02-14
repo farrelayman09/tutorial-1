@@ -1,13 +1,37 @@
-name: PMD Source Code Analyzer on Push
+name: PMD Security Analysis
 
-on: [push]
+## Run PMD jobs on all branches
+on:
+  push:
+  pull_request:
+
+# Declare default permissions as read only.
+permissions: read-all
 
 jobs:
   pmd:
-
-    runs-on: ubuntu-latest
-    
+    name: Run tests
+    runs-on: ubuntu-22.04
+    permissions:
+      # required for all workflows
+      security-events: write
     steps:
-      - uses: sfdx-actions/setup-pmd@v1
-      - name: run-pmd
-        run: pmd -d ./force-app/main/default/classes -R category/apex/design.xml -f text
+      - name: Check out the Git repository
+        uses: actions/checkout@v4
+      - name: Set up Java toolchain
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+          cache: 'gradle'
+      - uses: pmd/pmd-github-action@v1
+        id: pmd
+        with:
+          version: '7.0.0-rc4'
+          sourcePath: 'src/main/java'
+          rulesets: 'rulesets/java/quickstart.xml,ruleset.xml'
+          analyzeModifiedFilesOnly: false
+      - name: Upload SARIF file
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: pmd-report.sarif
