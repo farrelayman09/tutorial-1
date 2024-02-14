@@ -1,4 +1,4 @@
-name: PMD Security Analysis
+name: PMD
 
 ## Run PMD jobs on all branches
 on:
