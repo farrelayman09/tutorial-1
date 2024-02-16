@@ -59,7 +59,7 @@ class ProductControllerTest {
 
     @Test
     void testEditProductPage() {
-        String productId = "1";
+        String productId = "eb558e9f-1c39-460e-8860-71af6af63bd6";
         Product product = new Product();
         when(productService.findById(productId)).thenReturn(product);
 
@@ -71,12 +71,35 @@ class ProductControllerTest {
 
     @Test
     void testEditProduct() {
-        String productId = "1";
+        String productId = "eb558e9f-1c39-460e-8860-71af6af63bd6";
         Product product = new Product();
 
         String viewName = productController.editProduct(productId, product);
 
         assertEquals("redirect:/product/list", viewName);
         verify(productService).edit(product);
+    }
+
+    @Test
+    void testDeleteProductPage() {
+        String productId = "eb558e9f-1c39-460e-8860-71af6af63bd6";
+        Product product = new Product();
+        when(productService.findById(productId)).thenReturn(product);
+
+        String viewName = productController.deleteProductPage(productId, model);
+
+        assertEquals("deleteProduct", viewName);
+        verify(model).addAttribute("product", product);
+    }
+
+    @Test
+    void testDeleteProduct() {
+        String productId = "eb558e9f-1c39-460e-8860-71af6af63bd6";
+        Product product = new Product();
+
+        String viewName = productController.deleteProduct(productId, product);
+
+        assertEquals("redirect:/product/list", viewName);
+        verify(productService).delete(product);
     }
 }
