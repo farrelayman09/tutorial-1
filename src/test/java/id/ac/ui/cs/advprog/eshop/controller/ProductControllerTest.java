@@ -56,4 +56,27 @@ class ProductControllerTest {
         assertEquals("productList", viewName);
         verify(model).addAttribute("products", productList);
     }
+
+    @Test
+    void testEditProductPage() {
+        String productId = "1";
+        Product product = new Product();
+        when(productService.findById(productId)).thenReturn(product);
+
+        String viewName = productController.editProductPage(productId, model);
+
+        assertEquals("editProduct", viewName);
+        verify(model).addAttribute("product", product);
+    }
+
+    @Test
+    void testEditProduct() {
+        String productId = "1";
+        Product product = new Product();
+
+        String viewName = productController.editProduct(productId, product);
+
+        assertEquals("redirect:/product/list", viewName);
+        verify(productService).edit(product);
+    }
 }
