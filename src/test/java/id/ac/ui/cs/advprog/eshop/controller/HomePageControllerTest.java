@@ -22,6 +22,6 @@ public class HomePageControllerTest {
 
         mockMvc.perform(get("/"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("homePage"));
+                .andExpect(view().name("HomePage"));
     }
 }
