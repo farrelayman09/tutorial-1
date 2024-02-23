@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 
+@Repository
 public class CarRepository {
     static int id = 0;
     private List<Car> carData = new ArrayList<>();
@@ -45,7 +46,7 @@ public class CarRepository {
 
     public void delete(String id) {
         carData.removeIf(car -> car.getCarId().equals(id));
-        
+
     }
 }
 
