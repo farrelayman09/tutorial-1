@@ -23,7 +23,7 @@ Menurut saya, jika terlalu banyak java class yang menggunakan setup prosedur dan
 - 2 Look at your CI/CD workflows (GitHub)/pipelines (GitLab). Do you think the current implementation has met the definition of Continuous Integration and Continuous Deployment? Explain the reasons (minimum 3 sentences)! <br>
 Iya, saya merasa sudah memenuhi CI workflow, tetapi CD masih belum. Code saya sudah terintegrasi dan mengautomsi proses CI workflow. Setiap saya push atau melakukan pull request. akan ter-trigge. Setelah itu unit test akan langsung mengecek kode saya. Saya juga menggunakan Scorecard and PMD workflow untuk mengecek security dan quality dari code saya.
 
-# tutorial-2
+# tutorial-3
 
 ## Reflection
 1) Explain what principles you apply to your project! <br>
