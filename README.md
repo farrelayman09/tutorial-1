@@ -23,3 +23,30 @@ Menurut saya, jika terlalu banyak java class yang menggunakan setup prosedur dan
 - 2 Look at your CI/CD workflows (GitHub)/pipelines (GitLab). Do you think the current implementation has met the definition of Continuous Integration and Continuous Deployment? Explain the reasons (minimum 3 sentences)! <br>
 Iya, saya merasa sudah memenuhi CI workflow, tetapi CD masih belum. Code saya sudah terintegrasi dan mengautomsi proses CI workflow. Setiap saya push atau melakukan pull request. akan ter-trigge. Setelah itu unit test akan langsung mengecek kode saya. Saya juga menggunakan Scorecard and PMD workflow untuk mengecek security dan quality dari code saya.
 
+# tutorial-2
+
+## Reflection
+1) Explain what principles you apply to your project! <br>
+- Saya mengimplementasi sendiri Single Responsibility Principle (SRP) di aplikasi ini. SRP merupakan prinsip di mana aplikasi yang kita buat harus modular di mana suatu class sebaiknya punya singular responsibility. Kita dapat melakukannya dengan mengorganisasikan aplikasi kita menjadi layers dan men-decompose large classes kita menjadi class yang lebih modular. Saya sendiri mengimplementasi prinsip ini dengan mengubah CarController yang awalnya package-private dan berada di file yang sama dengan productController, menjadi public dan pindah ke file yang berbeda dari ProductController. <br>
+- Open-Closed Principle sudah terimplementasi di aplikasi dari awal karena tidak ada super class yang di-alter. Prinsip ini mengatakan bahwa sebuah "software artifact should be open for extension, but not for modification". Contoh implementasinya di module ini adalah CarController yang meng-extend ProductController dan tidak memodifikasi superclass (ProductController) sama sekali. Implementasi prinsip ini dapat membantu mencegah adanya bug baru yang bisa terjadi ketika kita malah membuat perubahan yang berhubungan dengan parent class yang telah ada.
+- Liskov-Substitution Principle sudah terimplementasi di aplikasi dari awal. LSP merupakan prinsip di mana suatu subclass di-expect dapat melakukan suatu behaviour sebagaimana dapat dilakukan oleh parent class. Implementasinya di aplikasi ini adalah class CarController yang menginherit ProductController dan bisa melakukan hal-hal yang dilakukan oleh parent class-nya, seperti create, list, edit, dan delete. Perbedaannya terdapat dalam konteks pembuatan objek/model di mana ProductController berurusan dengan Product, sementara CarController berurusan dengan yang lebih spesifik, yakni Car.
+- Interface Segregation Principle sudah terimplementasi di aplikasi dari awal. ISP merupakan prinsip yang menggarisbawahi pemisahan interface sehingga lebih modular dan kontekstual. Hal ini memungkinkan class untuk mengimplmentasi interface hanya yang dibutuhkan olehnya saja. Dengan prinsip ini, class akan hanya mengimplementasi interface yang relevan dan focused dengan mereka. Implementasinya di aplikasi ini adalah interface CarService yang sudah bersifat modular dan kontekstual. Oleh karena itu, Ketika CarServiceImpl mengimplementasi interface CarService tersebut, method-method yang digunakan pun masih bersifat relevan dengan CarServiceImpl, seperti create, findAll, findById, update, dan deleteById.
+- Saya mengimplementasi sendiri Dependency Inversions Principle (DIP) di aplikasi ini. DIP sendiri merupakan prinsip di mana kita diimbau untuk menggunakan abstrasi dari suatu class, bukan concrete class itu sendiri. Saya mengimplentasinya dengan mengubah tulisan CarServiceImpl di class CarController menjadi CarService. Dengan melakukan ini, dipastikan bahwa programmer lebih fleksibel dan tidak terbebani detail spesifik yang biasa terdapat di implementasi-implementasi berbeda.
+
+
+2) Explain the advantages of applying SOLID principles to your project with examples.
+- Lebih modular dan maintainable
+- Minimize dependencies
+- Mudah menambkan fungsionalitas baru
+- Lebih mudah melakukan testing
+- Contoh: Dengan memisahkan CarController dan ProductController ke file yang berbeda, aplikasi akan lebih modular. Hal ini berarti aplikasi lebih Lower coupling sehingga men-decrease dependencies. Selain itu, karena organization yang smaller dan well-structured, class akan lebih mudah dinavigasi daripada class yang large dan monolithic.
+- Contoh2: Dengan menggunakan CarService alih-alih CarServiceImpl di CarController (ISP), developer akan lebih fleksibel dan tidak perlu mengkhawatirkan mengenai implementasi spesifik yang dimiliki oleh suatu concrete class.
+
+3) Explain the disadvantages of not applying SOLID principles to your project with examples.
+- Lebih sulit dibaca
+- Lebih rumit dalam menambahkan fungsionalitas baru
+- Lebih rawan mendapatkan bug yang kian bertambah.
+- Contoh: Dengan menerapkan Open-closed principle, seperti hubungan CarController dengan ProductController, kita bisa menambahkan fungsionalitas baru tanpa memodifikasi suatu parent class yang sudah ada. Tanpa menggunakan prinsip ini, bug baru rawan muncul karena kita telah mengotak-atik functioning parent class tersebut.
+- Contoh2: Jika kita tidak menerapkan prinsip ISP di aplikasi kita, Ke depannya, ketika implementasi kita lebih banyak dan variatif, hal ini akan rumit karena membuat developer khawatir akan implementasi spesifik dari concrete classes yang ada. Hal ini juga akan sangat terasa ketika kita ingin mengganti suatu objek concrete class1 dengan objeck concrete class2 di mana bisa saja implementasi method-methodnya sangat berbeda
+
+
