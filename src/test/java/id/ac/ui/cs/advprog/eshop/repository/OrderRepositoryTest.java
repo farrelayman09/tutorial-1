@@ -2,20 +2,15 @@ package id.ac.ui.cs.advprog.eshop.repository;
 
 import id.ac.ui.cs.advprog.eshop.enums.OrderStatus;
 import id.ac.ui.cs.advprog.eshop.model.Order;
-import id.ac.ui.cs.advprog.eshop.model.OrderTest;
 import id.ac.ui.cs.advprog.eshop.model.Product;
-import id.ac.ui.cs.advprog.eshop.model.ProductTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestTemplate;
-import org.mockito.internal.matchers.Or;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class OrderRepositoryTest {
 
@@ -30,7 +25,8 @@ public class OrderRepositoryTest {
         Product product1 = new Product();
         product1.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
         product1.setProductName("Sampo Cap Bambang");
-        product1.setProductQuantity(100);
+        product1.setProductQuantity(2);
+        products.add(product1);
 
         orders = new ArrayList<>();
         Order order1 = new Order("13652556-012a-4c07-b546-54eb1396d79b",
@@ -115,7 +111,4 @@ public class OrderRepositoryTest {
                 orders.get(1).getAuthor().toLowerCase());
         assertTrue(orderList.isEmpty());
     }
-}
-
-
 }
