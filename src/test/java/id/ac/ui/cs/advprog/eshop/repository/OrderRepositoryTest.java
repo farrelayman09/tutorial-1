@@ -70,7 +70,7 @@ public class OrderRepositoryTest {
     }
 
     @Test
-    void TestFindIdIfIdFound() {
+    void testFindIdIfIdFound() {
         for (Order order : orders) {
             orderRepository.save(order);
         }
@@ -83,7 +83,7 @@ public class OrderRepositoryTest {
     }
 
     @Test
-    void TestFindIdIfIdNotFound() {
+    void testFindIdIfIdNotFound() {
         for (Order order : orders) {
             orderRepository.save(order);
         }
@@ -93,7 +93,7 @@ public class OrderRepositoryTest {
     }
 
     @Test
-    void TestFindAllByAuthorIfAuthorCorrect() {
+    void testFindAllByAuthorIfAuthorCorrect() {
         for (Order order : orders) {
             orderRepository.save(order);
         }
@@ -104,7 +104,7 @@ public class OrderRepositoryTest {
     }
 
     @Test
-    void TestFindAllByAuthorIfAllLowercase() {
+    void testFindAllByAuthorIfAllLowercase() {
         orderRepository.save(orders.get(1));
 
         List<Order> orderList = orderRepository.findAllByAuthor(
