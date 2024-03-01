@@ -8,6 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -22,6 +23,7 @@ import static org.mockito.Mockito.*;
 public class OrderServiceTest {
     @InjectMocks
     OrderServiceImpl orderService;
+    @Mock
     OrderRepository orderRepository;
     List<Order> orders;
 
@@ -122,7 +124,7 @@ public class OrderServiceTest {
         for (Order result : results) {
             assertEquals(order.getAuthor(), result.getAuthor());
         }
-        assertEquals(order.getAuthor(), results.size());
+        assertEquals(2, results.size());
     }
 
     @Test
