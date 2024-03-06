@@ -67,7 +67,7 @@ public class VoucherPaymentTest {
     @Test
     void testCreatePaymentRejectedStatus() {
         Payment payment = new VoucherPayment("a2a5b551-112b-4c0f-d546-84ea1396c79e",
-                PaymentMethod.BANK.getValue(), order, paymentData, PaymentStatus.SUCCESS.getValue());
+                PaymentMethod.BANK.getValue(), order, paymentData, PaymentStatus.REJECTED.getValue());
         assertEquals(PaymentStatus.REJECTED.getValue(), payment.getStatus());
     }
 
