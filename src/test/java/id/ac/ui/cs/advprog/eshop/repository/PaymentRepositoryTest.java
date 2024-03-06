@@ -18,6 +18,8 @@ import id.ac.ui.cs.advprog.eshop.enums.PaymentMethod;
 import id.ac.ui.cs.advprog.eshop.enums.PaymentStatus;
 
 class PaymentRepositoryTest {
+    Payment voucherPayment;
+    Payment bankPayment;
     PaymentRepository paymentRepository;
     Order order;
     List<Product> products;
@@ -46,13 +48,13 @@ class PaymentRepositoryTest {
 
         Map<String, String> voucherPaymentData = new HashMap<>();
         voucherPaymentData.put("voucherCode", "ESHOP1234ABC5678");
-        Payment voucherPayment = new VoucherPayment("a2a5b551-112b-4c0f-d546-84ea1396c79d",
+        voucherPayment = new VoucherPayment("a2a5b551-112b-4c0f-d546-84ea1396c79d",
                 PaymentMethod.VOUCHER.getValue(), order, voucherPaymentData);
 
         Map<String, String> bankPaymentData = new HashMap<>();
         bankPaymentData.put("bankName", "Mandiri");
         bankPaymentData.put("referenceCode", "123456789");
-        Payment bankPayment = new BankPayment("a2a5b551-112b-4c0f-d546-84ea1396c79e",
+        bankPayment = new BankPayment("a2a5b551-112b-4c0f-d546-84ea1396c79e",
                 PaymentMethod.BANK.getValue(), order, bankPaymentData);
 
         payments.add(voucherPayment);
@@ -76,10 +78,10 @@ class PaymentRepositoryTest {
 
     @Test
     void testSaveCreateVoucherMethod() {
-        Payment payment = payments.get(2);
+        Payment payment = payments.get(0);
         Payment result = paymentRepository.save(payment);
 
-        Payment findResult = paymentRepository.findById(payments.get(2).getId());
+        Payment findResult = paymentRepository.findById(payments.get(0).getId());
         assertEquals(payment.getId(), result.getId());
         assertEquals(payment.getId(), findResult.getId());
         assertEquals(payment.getMethod(), findResult.getMethod());
@@ -101,7 +103,7 @@ class PaymentRepositoryTest {
 
     @Test
     void testSaveCreateBankPaymentDuplicateId() {
-        Payment payment = payments.get(3);
+        Payment payment = payments.get(1);
         paymentRepository.save(payment);
         assertThrows(IllegalArgumentException.class, () -> {
             paymentRepository.save(payment);
@@ -110,7 +112,7 @@ class PaymentRepositoryTest {
 
     @Test
     void testSaveCreateVoucherPaymentDuplicateId() {
-        Payment payment = payments.get(2);
+        Payment payment = payments.get(0);
         paymentRepository.save(payment);
         assertThrows(IllegalArgumentException.class, () -> {
             paymentRepository.save(payment);

@@ -14,7 +14,7 @@ public class PaymentRepository {
     public Payment save(Payment payment) {
         for (Payment p : payments) {
             if (p.getId().equals(payment.getId())) {
-                throw new IllegalArgumentException("Payment already exists");
+                throw new IllegalArgumentException();
             }
         }
 
