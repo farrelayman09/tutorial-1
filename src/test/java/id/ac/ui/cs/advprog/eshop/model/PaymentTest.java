@@ -55,7 +55,7 @@ public class PaymentTest {
         Payment payment = new Payment("a2a5b551-112b-4c0f-d546-84ea1396c79e",
                 PaymentMethod.BANK.getValue(), order, paymentData);
 
-        assertEquals("13652556-012a-4c07-b546-54eb1396d79b", payment.getId());
+        assertEquals("a2a5b551-112b-4c0f-d546-84ea1396c79e", payment.getId());
         assertEquals(PaymentMethod.BANK.getValue(), payment.getMethod());
         assertEquals(order, payment.getOrder());
         assertEquals(paymentData, payment.getPaymentData());
@@ -92,8 +92,8 @@ public class PaymentTest {
         putTransferPaymentData();
         Payment payment = new Payment("a2a5b551-112b-4c0f-d546-84ea1396c79e",
                 PaymentMethod.BANK.getValue(), order, paymentData, PaymentStatus.SUCCESS.getValue());
-        payment.setStatus(OrderStatus.CANCELLED.getValue());
-        assertEquals(OrderStatus.CANCELLED.getValue(), payment.getStatus());
+        payment.setStatus(PaymentStatus.REJECTED.getValue());
+        assertEquals(PaymentStatus.REJECTED.getValue(), payment.getStatus());
     }
 
     @Test
