@@ -5,6 +5,7 @@ import id.ac.ui.cs.advprog.eshop.enums.PaymentMethod;
 import id.ac.ui.cs.advprog.eshop.enums.PaymentStatus;
 import id.ac.ui.cs.advprog.eshop.model.*;
 import id.ac.ui.cs.advprog.eshop.repository.PaymentRepository;
+import id.ac.ui.cs.advprog.eshop.repository.ProductRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -22,10 +23,11 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class PaymentServiceTest {
-    @InjectMocks
-    PaymentServiceImpl paymentService;
     @Mock
     PaymentRepository paymentRepository;
+
+    @InjectMocks
+    PaymentServiceImpl paymentService;
     List<Order> orders;
     Order order;
     List<Payment> payments;
@@ -33,6 +35,7 @@ public class PaymentServiceTest {
 
     @BeforeEach
     void setUp() {
+        payments = new ArrayList<>();
         List<Product> products = new ArrayList<>();
         Product product1 = new Product();
         product1.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
@@ -67,11 +70,14 @@ public class PaymentServiceTest {
                 "a2a5b551-112b-4c0f-d546-84ea1396c79d", PaymentMethod.BANK.getValue(), order2,
                 bankPaymentData);
 
+        payments.add(voucherPayment);
+        payments.add(bankPayment);
+
     }
 
     @Test
     void testAddVoucherPayment() {
-        Payment voucherPayment = payments.get(0);
+        Payment voucherPayment = payments.getFirst();
         doReturn(voucherPayment).when(paymentRepository).save(any(Payment.class));
         voucherPayment = paymentService.addPayment(voucherPayment.getOrder(),
                 voucherPayment.getMethod(), voucherPayment.getPaymentData());
@@ -84,8 +90,6 @@ public class PaymentServiceTest {
         assertEquals(voucherPayment.getPaymentData(), result.getPaymentData());
         assertEquals(voucherPayment.getMethod(), result.getMethod());
         assertEquals(PaymentMethod.VOUCHER.getValue(), result.getMethod());
-        verify(paymentService, times(1)).addPayment(any(
-                Order.class), any(String.class), any(Map.class));
     }
 
     @Test
@@ -104,8 +108,6 @@ public class PaymentServiceTest {
         assertEquals(bankPayment.getPaymentData(), result.getPaymentData());
         assertEquals(bankPayment.getMethod(), result.getMethod());
         assertEquals(PaymentMethod.BANK.getValue(), result.getMethod());
-        verify(paymentService, times(1)).addPayment(any(
-                Order.class), any(String.class), any(Map.class));
     }
 
     @Test

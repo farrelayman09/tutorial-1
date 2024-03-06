@@ -34,11 +34,8 @@ public class PaymentTest {
         this.products.add(product1);
         this.products.add(product2);
 
-        order = new Order(
-                "dbd4aff4-9a7f-4603-92c2-eaf529271cc9",
-                products,
-                1708560000L,
-                "Safira Sudrajat"
+        order = new Order("dbd4aff4-9a7f-4603-92c2-eaf529271cc9",
+                products, 1708560000L, "Safira Sudrajat"
         );
     }
 
