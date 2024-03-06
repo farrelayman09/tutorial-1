@@ -40,6 +40,12 @@ public class PaymentServiceTest {
         product1.setProductQuantity(2);
         products.add(product1);
 
+        Product product2 = new Product();
+        product2.setProductId("a0f9de46-98b1-437d-a0bf-d0821dde9896");
+        product2.setProductName("Sabun Cap Usep");
+        product2.setProductQuantity(1);
+        products.add(product2);
+
         orders = new ArrayList<>();
         Order order1 = new Order("13652556-012a-4c07-b546-54eb1396d79b",
                 products, 1708560000L, "Safira Sudrajat");
