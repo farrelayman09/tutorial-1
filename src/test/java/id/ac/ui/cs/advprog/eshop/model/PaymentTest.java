@@ -1,6 +1,8 @@
 package id.ac.ui.cs.advprog.eshop.model;
 
 import id.ac.ui.cs.advprog.eshop.enums.OrderStatus;
+import id.ac.ui.cs.advprog.eshop.enums.PaymentMethod;
+import id.ac.ui.cs.advprog.eshop.enums.PaymentStatus;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -14,6 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class PaymentTest {
     private List<Product> products;
     private Map<String, String> paymentData;
+    private Order order;
 
     @BeforeEach
     void setUp() {
