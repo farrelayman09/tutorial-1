@@ -51,4 +51,12 @@ Iya, saya merasa sudah memenuhi CI workflow, tetapi CD masih belum. Code saya su
 - Contoh: Dengan menerapkan Open-closed principle, seperti hubungan CarController dengan ProductController, kita bisa menambahkan fungsionalitas baru tanpa memodifikasi suatu parent class yang sudah ada. Tanpa menggunakan prinsip ini, bug baru rawan muncul karena kita telah mengotak-atik functioning parent class tersebut.
 - Contoh2: Jika kita tidak menerapkan prinsip ISP di aplikasi kita, Ke depannya, ketika implementasi kita lebih banyak dan variatif, hal ini akan rumit karena membuat developer khawatir akan implementasi spesifik dari concrete classes yang ada. Hal ini juga akan sangat terasa ketika kita ingin mengganti suatu objek concrete class1 dengan objeck concrete class2 di mana bisa saja implementasi method-methodnya sangat berbeda
 
+# tutorial-4
+
+## Reflection 1
+
+1) Menurut saya, TDD Flow ini lumayan berguna, tetapi bisa dikatakan sulit dibanding test pada biasanya. Hal ini karena kita memulai dengan membuat test sehingga bagi saya bayangan yang didapatkan lebih abstrak dibanding biasanya. Ke depannya saya akan memerhatikan kebutuhan testcases seperti jenis voucher apa yang diterima dan lain-lain. Dengan memahami lebih dalam hal tsb, saya merasa dapat lebih membayangkan test-test yang dibutuhkan
+
+2) Saya merasa bahwa test yang saya buat sudah mengikuti prinsip FIRST. Hal ini karena test-test sudah cepat, konsisten, repeatable, dan juga sudah mencakup positive and negative test cases.
+
 
