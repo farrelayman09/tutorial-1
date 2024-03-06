@@ -57,6 +57,5 @@ Iya, saya merasa sudah memenuhi CI workflow, tetapi CD masih belum. Code saya su
 
 1) Menurut saya, TDD Flow ini lumayan berguna, tetapi bisa dikatakan sulit dibanding test pada biasanya. Hal ini karena kita memulai dengan membuat test sehingga bagi saya bayangan yang didapatkan lebih abstrak dibanding biasanya. Ke depannya saya akan memerhatikan kebutuhan testcases seperti jenis voucher apa yang diterima dan lain-lain. Dengan memahami lebih dalam hal tsb, saya merasa dapat lebih membayangkan test-test yang dibutuhkan
 
-2) Saya merasa bahwa test yang saya buat sudah mengikuti prinsip FIRST. Hal ini karena test-test sudah cepat, konsisten, repeatable, dan juga sudah mencakup positive and negative test cases.
-
+2) Saya merasa bahwa test yang saya buat sudah mengikuti prinsip FIRST. Hal ini karena test-test sudah cepat, konsisten, repeatable, dan juga sudah mencakup positive and negative test cases. Contoh dari test positif dan negative, saya membuat beberapa test untuk model Payment, saya membuat testCreatePaymentSuccessStatus serta testCreatePaymentInvalidStatus. testCreatePaymentSuccessStatus di assert menggunakan assertEquals sementara testCreatePaymentInvalidStatus menggunakan assertThrows. Adanya kedua test ini meng-guarantee bahwa aplikasi siap menghadapi happy case maupun bad case
 
