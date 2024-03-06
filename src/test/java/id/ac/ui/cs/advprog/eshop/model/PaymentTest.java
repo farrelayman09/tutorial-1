@@ -51,6 +51,7 @@ public class PaymentTest {
 
     @Test
     void testCreateOrderDefaultStatus() {
+        putTransferPaymentData();
         Payment payment = new Payment("a2a5b551-112b-4c0f-d546-84ea1396c79e",
                 PaymentMethod.BANK.getValue(), order, paymentData);
 
@@ -63,6 +64,7 @@ public class PaymentTest {
 
     @Test
     void testCreatePaymentSuccessStatus() {
+        putTransferPaymentData();
         Payment payment = new Payment("a2a5b551-112b-4c0f-d546-84ea1396c79e",
                 PaymentMethod.BANK.getValue(), order, paymentData, PaymentStatus.SUCCESS.getValue());
         assertEquals(PaymentStatus.SUCCESS.getValue(), payment.getStatus());
@@ -70,6 +72,7 @@ public class PaymentTest {
 
     @Test
     void testCreatePaymentInvalidStatus() {
+        putTransferPaymentData();
         assertThrows(IllegalArgumentException.class, () -> {
             Payment payment = new Payment("a2a5b551-112b-4c0f-d546-84ea1396c79e",
                     PaymentMethod.BANK.getValue(), order, paymentData, "MEOW");
@@ -78,6 +81,7 @@ public class PaymentTest {
 
     @Test
     void testCreatePaymentRejectedStatus() {
+        putTransferPaymentData();
         Payment payment = new Payment("a2a5b551-112b-4c0f-d546-84ea1396c79e",
                 PaymentMethod.BANK.getValue(), order, paymentData, PaymentStatus.REJECTED.getValue());
         assertEquals(PaymentStatus.REJECTED.getValue(), payment.getStatus());
@@ -85,6 +89,7 @@ public class PaymentTest {
 
     @Test
     void testSetStatusToRejected() {
+        putTransferPaymentData();
         Payment payment = new Payment("a2a5b551-112b-4c0f-d546-84ea1396c79e",
                 PaymentMethod.BANK.getValue(), order, paymentData, PaymentStatus.SUCCESS.getValue());
         payment.setStatus(OrderStatus.CANCELLED.getValue());
@@ -93,6 +98,7 @@ public class PaymentTest {
 
     @Test
     void testSetStatusToInvalidStatus() {
+        putTransferPaymentData();
         Payment payment = new Payment("a2a5b551-112b-4c0f-d546-84ea1396c79e",
                 PaymentMethod.BANK.getValue(), order, paymentData);
         assertThrows(IllegalArgumentException.class, () -> order.setStatus("MEOW"));
@@ -100,6 +106,7 @@ public class PaymentTest {
 
     @Test
     void testCreatePaymentWithNullOrder() {
+        putTransferPaymentData();
         assertThrows(IllegalArgumentException.class, () -> {
             @SuppressWarnings("unused")
             Payment payment = new Payment("a2a5b551-112b-4c0f-d546-84ea1396c79e",
