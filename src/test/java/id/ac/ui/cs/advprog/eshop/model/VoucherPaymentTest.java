@@ -13,14 +13,13 @@ import java.util.Map;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class VoucherPaymentTest {
-    private List<Product> products;
     private Map<String, String> paymentData;
     private Order order;
 
     @BeforeEach
     void setUp() {
         this.paymentData = new HashMap<>();
-        this.products = new ArrayList<>();
+        List<Product> products = new ArrayList<>();
 
         Product product1 = new Product();
         product1.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
@@ -31,8 +30,8 @@ public class VoucherPaymentTest {
         product2.setProductId("a2c62328-4137-4664-83c7-f32db8620155");
         product2.setProductName("Sabun Cap Usep");
         product2.setProductQuantity(1);
-        this.products.add(product1);
-        this.products.add(product2);
+        products.add(product1);
+        products.add(product2);
 
         order = new Order(
                 "dbd4aff4-9a7f-4603-92c2-eaf529271cc9",
