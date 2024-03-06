@@ -1,13 +1,8 @@
 package id.ac.ui.cs.advprog.eshop.model;
 
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-import id.ac.ui.cs.advprog.eshop.enums.OrderStatus;
-import id.ac.ui.cs.advprog.eshop.enums.PaymentMethod;
 import id.ac.ui.cs.advprog.eshop.enums.PaymentStatus;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -46,7 +41,3 @@ public class Payment {
     }
 
 }
-
-
-//    Payment payment = new Payment("a2a5b551-112b-4c0f-d546-84ea1396c79e",
-//            PaymentMethod.BANK.getValue(), order, paymentData, PaymentStatus.SUCCESS.getValue());
