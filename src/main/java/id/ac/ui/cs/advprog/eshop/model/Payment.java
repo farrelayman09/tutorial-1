@@ -22,7 +22,7 @@ public class Payment {
         this.paymentData = paymentData;
         this.status = PaymentStatus.PROCESSING.getValue();
 
-        if (paymentData.isEmpty() || order == null) {
+        if (paymentData == null || paymentData.isEmpty() || order == null) {
             throw new IllegalArgumentException();
         }
     }

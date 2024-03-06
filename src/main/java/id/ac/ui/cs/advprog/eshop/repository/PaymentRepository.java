@@ -11,12 +11,28 @@ import id.ac.ui.cs.advprog.eshop.model.Payment;
 public class PaymentRepository {
     private List<Payment> payments = new ArrayList<>();
 
-    public Payment save(Payment payment) {return null;
+    public Payment save(Payment payment) {
+        for (Payment p : payments) {
+            if (p.getId().equals(payment.getId())) {
+                throw new IllegalArgumentException("Payment already exists");
+            }
+        }
+
+        payments.add(payment);
+        return payment;
     }
 
-    public Payment findById(String id) {return null;
+    public Payment findById(String id) {
+        for (Payment p : payments) {
+            if (p.getId().equals(id)) {
+                return p;
+            }
+        }
+
+        return null;
     }
 
-    public List<Payment> getAllPayments() {return null;
+    public List<Payment> getAllPayments() {
+        return payments;
     }
 }

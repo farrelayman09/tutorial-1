@@ -30,29 +30,23 @@ class PaymentRepositoryTest {
         products = new ArrayList<>();
 
         Product product1 = new Product();
-        product1.setProductId("e45d7d21-fd29-4533-a569-abbe0819579a");
+        product1.setProductId("eb558e9f-1c39-468e-8860-71af6af63bd6");
         product1.setProductName("Sampo Cap Bambang");
         product1.setProductQuantity(2);
         products.add(product1);
 
         Product product2 = new Product();
-        product2.setProductId("8a76b99c-a0b3-46d2-a688-4c1831b21119");
+        product2.setProductId("a0f9de46-98b1-437d-a0bf-d0821dde9896");
         product2.setProductName("Sabun Cap Usep");
         product2.setProductQuantity(1);
         products.add(product2);
-        order = new Order("dbd4aff4-9a7f-4603-92c2-eaf529271cc9",
+        order = new Order("e334ef40-9eff-4da8-9487-8ee697ecbf1e",
                 products, 1708560000L, "Safira Sudrajat");
 
-        Payment payment1 = new Payment("a0f81308-9911-40c5-8da4-fa3194485aa1",
-                "", order, null);
-        Payment payment2 = new Payment("b0f81308-9911-40c5-8da4-fa3194485aa1",
-                        "", order, null);
-        payments.add(payment1);
-        payments.add(payment2);
 
         Map<String, String> voucherPaymentData = new HashMap<>();
         voucherPaymentData.put("voucherCode", "ESHOP1234ABC5678");
-        Payment voucherPayment = new VoucherPayment("a2a5b551-112b-4c0f-d546-84ea1396c79e",
+        Payment voucherPayment = new VoucherPayment("a2a5b551-112b-4c0f-d546-84ea1396c79d",
                 PaymentMethod.VOUCHER.getValue(), order, voucherPaymentData);
 
         Map<String, String> bankPaymentData = new HashMap<>();
@@ -130,7 +124,7 @@ class PaymentRepositoryTest {
         }
 
         List<Payment> allPayments = paymentRepository.getAllPayments();
-        assertEquals(4, allPayments.size());
+        assertEquals(2, allPayments.size());
     }
 
     @Test
